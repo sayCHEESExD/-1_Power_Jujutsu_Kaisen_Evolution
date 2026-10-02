@@ -1,0 +1,41 @@
+{
+  "name": "power-jujutsu-kaisen-evolution",
+  "version": "0.1.0",
+  "private": true,
+  "description": "+1 Power Jujutsu Kaisen Evolution - browser multiplayer training game: punch bags for Cursed Energy, unlock sorcerers, smash through 50 cursed stages, rebirth and fight in the Culling Arena (Three.js + Colyseus)",
+  "type": "module",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "workspaces": [
+    "shared",
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "build:shared": "npm run build --workspace @jjk/shared",
+    "dev": "npm run build:shared && concurrently -n server,client -c magenta,cyan \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "npm run dev --workspace @jjk/server",
+    "dev:client": "npm run dev --workspace @jjk/client",
+    "build": "npm run build:shared && npm run build --workspace @jjk/server && npm run build --workspace @jjk/client",
+    "build:client": "npm run build:shared && npm run build --workspace @jjk/client",
+    "build:server": "npm run build:shared && npm run build --workspace @jjk/server",
+    "typecheck": "npm run build:shared && npm run typecheck --workspaces --if-present",
+    "start": "npm run start --workspace @jjk/server",
+    "verify:assets": "node scripts/verify-assets.mjs",
+    "size:client": "node scripts/build-size.mjs",
+    "verify:progression": "npm run build:server && node scripts/verify-progression.mjs",
+    "verify": "npm run verify:progression && npm run verify:assets && node scripts/verify-run.mjs && node scripts/verify-multiplayer.mjs",
+    "verify:capacity": "node scripts/verify-capacity.mjs",
+    "verify:persistence": "npm run build:server && node scripts/verify-persistence.mjs",
+    "verify:multiplayer": "npm run build:server && node scripts/verify-multiplayer.mjs",
+    "verify:run": "npm run build:server && node scripts/verify-run.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "typescript": "^5.9.3"
+  },
+  "overrides": {
+    "@colyseus/core": "0.16.24"
+  }
+}
