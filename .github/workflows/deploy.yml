@@ -21,7 +21,7 @@
 # {channel, image, version, seatCap, maxReplicas}, and
 # "POST https://api.bloxity.io/v1/hosting/games/<gameId>/frontend?channel=&version="
 # with the zip as the raw body). Re-checked against the docs and the live API on
-# 2026-10-01 with unauthenticated requests (no token, empty body):
+# 2026-10-02 with unauthenticated requests (no token, empty body):
 #
 #   POST https://legion.bloxity.io/v1/apps/power-jujutsu-kaisen-evolution/deploy          -> 401
 #   POST https://api.bloxity.io/v1/hosting/games/power-jujutsu-kaisen-evolution/frontend  -> 401
